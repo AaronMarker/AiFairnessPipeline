@@ -376,7 +376,7 @@ if uploaded_file is not None:
                         st.error(f"Incomplete column selection: {invalid}")
                         st.stop()
 
-                    from aiFairnessPipeline.src.ParsePredictionsByDem import iterateOverData
+                    from src.ParsePredictionsByDem import iterateOverData
 
                     
                     if not st.session_state.baseline:
