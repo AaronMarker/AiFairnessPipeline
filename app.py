@@ -20,7 +20,7 @@ import time
 from pathlib import Path
 import pandas as pd
 import tempfile
-from auth import is_logged_in, show_login_page, show_user_info, login_required
+#from auth import is_logged_in, show_login_page, show_user_info, login_required
 import csv
 from typing import Any, Dict, List
 import pandas as _pd
