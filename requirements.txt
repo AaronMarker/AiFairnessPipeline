@@ -1,3 +1,9 @@
 streamlit
 pandas
+numpy
+scipy
+matplotlib
+seaborn
+scikit-learn
 pillow
+requests
