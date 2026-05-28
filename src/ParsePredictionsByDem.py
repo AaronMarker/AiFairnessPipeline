@@ -187,7 +187,7 @@ def iterateOverData(dfAllRuns, matches, control, base, tests_run, graphs):
         print("\n# DEBUG: Processing outcome pair:", outcome_list)
         true_df = _loadApproachColumn(dfAllRuns, outcome_list[1], 'true')
         cont_df = _loadApproachColumn(dfAllRuns, control, 'demographic_val')
-        if "hi" not in base:
+        if NO_BASELINE_VARIABLE not in base:
             base_df = _loadApproachColumn(dfAllRuns, base, 'base')
 
         cont_bins_df = labelBins(cont_df, 'demographic_val')
