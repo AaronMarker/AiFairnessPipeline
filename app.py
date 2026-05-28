@@ -381,7 +381,7 @@ if uploaded_file is not None:
                     
                     if not st.session_state.baseline:
                         #st.session_state.base = ["hi"]
-                        st.session_state.base = [NO_BASELINE_VARIABLE]
+                        st.session_state.base = NO_BASELINE_VARIABLE
                     #st.write(st.session_state.base)
                     try:
                         results_df = iterateOverData(raw_df, matches,
