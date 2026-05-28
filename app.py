@@ -127,7 +127,7 @@ with ic2:
 with ic3:
     img = Image.open("static/static_img_BCI_formula.png")
     st.image(img, width=300)
-    img = Image.open("static/static_img_fx_forumla.png")
+    img = Image.open("static/static_img_fx_formula.png")
     st.image(img, width=300)
 #st.info('This is a purely informational message', icon="ℹ️")
 
