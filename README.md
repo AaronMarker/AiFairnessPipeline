@@ -146,10 +146,10 @@ patsy
 If you use this tool or the BCI metric in your work, please cite:
 
 ```
-@article{aifairnesspipeline,
-  title={Bilateral Concentration Index: Measuring Error Disparities in Community-Level Health Prediction},
-  author={...},
-  year={2024}
+@article{marker2026quantifying,
+  title={Quantifying Error Disparities in Population Health Models},
+  author={Marker, Aaron and Giorgi, Salvatore and Ganesan, Adithya V and Varadarajan, Vasudha and Deshpande, Ojas and Brandt, Laura and Odom, Gabriel and Schwartz, Andrew},
+  year={2026}
 }
 ```
 
