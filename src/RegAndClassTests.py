@@ -17,7 +17,7 @@ OUTCOME_TABLE = "bl_wave_v9"
 OUTCOME_FIELDS = ["phq9_sum"]
 OUTCOME_CONTROLS = ["individual_income"]
 GROUP_FREQ_THRESH = 0
-FEATURE_TABLES = [['feat$dr_pca_ema_nagg_v9_txt_reduced100$ema_nagg_v9_txt$user_id'], ['feat$dr_pca_fb_text_v8_reduced100$fb_text_v8$user_id']]#[['feat$cat_LIWC2022$ema_nagg_v9_txt$user_id$1gra'], ['feat$cat_LIWC2022$fb_text_v8$user_id$1gra']]#[['feat$roberta_ba_meL11con$ema_nagg_v9_txt$user_id'], ['feat$roberta_ba_meL11con$fb_text_v8$user_id']]
+FEATURE_TABLES = [['feat$dr_pca_ema_nagg_v9_txt_reduced100$ema_nagg_v9_txt$user_id'], ['feat$dr_pca_fb_text_v8_reduced100$fb_text_v8$user_id']]
 FEATURE_SELECTION_STRING = 'magic_sauce'
 
 
@@ -59,19 +59,13 @@ class ClassificationTest(Test):
         self._saveResults(scoresRaw)
 
     def _saveResults(self, scoresRaw):
-        outputStream = open(self.csv, 'a')
-        csv_writer = csv.writer(outputStream)
-        csv_writer.writerow([self.name, self.result["tables"]["outcomeFields"], self.result["tables"]["outcomeControls"], self.result["tables"]["feat"]])
-        ClassifyPredictor.printComboControlScoresToCSV(scoresRaw, outputStream, delimiter=",")
-        outputStream.close()
-        outputStream = open("CLASS_" + self.csv, 'a')
-        csv_writer = csv.writer(outputStream)
-        csv_writer.writerow([self.name, self.result["tables"]["outcomeFields"], self.result["tables"]["outcomeControls"], self.result["tables"]["feat"]])
-        ClassifyPredictor.printComboControlPredictionsToCSV(scoresRaw, outputStream, delimiter=",")
-        outputStream.close()
-        
-        #for score in scoresRaw:
-        #    self.result["scores"][score] = scoresRaw[score][tuple()][1]
+        header = [self.name, self.result["tables"]["outcomeFields"], self.result["tables"]["outcomeControls"], self.result["tables"]["feat"]]
+        with open(self.csv, 'a') as outputStream:
+            csv.writer(outputStream).writerow(header)
+            ClassifyPredictor.printComboControlScoresToCSV(scoresRaw, outputStream, delimiter=",")
+        with open("CLASS_" + self.csv, 'a') as outputStream:
+            csv.writer(outputStream).writerow(header)
+            ClassifyPredictor.printComboControlPredictionsToCSV(scoresRaw, outputStream, delimiter=",")
 
 
 
@@ -111,27 +105,16 @@ class RegressionTest(Test):
 
     def run(self):
         scoresRaw = self.rp.testControlCombos(savePredictions=True, numOfFactors = None, comboSizes = [], nFolds = 10, allControlsOnly=True, report = False)
-        #print("SCORESRAW: ", scoresRaw)
         self._saveResults(scoresRaw)
 
     def _saveResults(self, scoresRaw):
-        '''for score in scoresRaw:
-            self.result["scores"][score] = scoresRaw[score][tuple()][1]
-
-        rh.SaveResult(self.result, "PoststratFactoradaptResults.json")'''
-        outputStream = open(self.csv, 'a')
-        csv_writer = csv.writer(outputStream)
-        csv_writer.writerow([self.name, self.result["tables"]["outcomeFields"], self.result["tables"]["outcomeControls"], self.result["tables"]["feat"]])
-        #csv_writer.writerow([str(scoresRaw)])
-
-        RegressionPredictor.printComboControlScoresToCSV(scoresRaw, outputStream)
-        outputStream.close()
-        outputStream.close()
-        outputStream = open("REG_" + self.csv, 'a')
-        csv_writer = csv.writer(outputStream)
-        csv_writer.writerow([self.name, self.result["tables"]["outcomeFields"], self.result["tables"]["outcomeControls"], self.result["tables"]["feat"]])
-        RegressionPredictor.printComboControlPredictionsToCSV(scoresRaw, outputStream)
-        outputStream.close()
+        header = [self.name, self.result["tables"]["outcomeFields"], self.result["tables"]["outcomeControls"], self.result["tables"]["feat"]]
+        with open(self.csv, 'a') as outputStream:
+            csv.writer(outputStream).writerow(header)
+            RegressionPredictor.printComboControlScoresToCSV(scoresRaw, outputStream)
+        with open("REG_" + self.csv, 'a') as outputStream:
+            csv.writer(outputStream).writerow(header)
+            RegressionPredictor.printComboControlPredictionsToCSV(scoresRaw, outputStream)
 
 
 
@@ -181,4 +164,3 @@ class ResidualFactorAdaptationRegressionTest(RegressionTest):
         scoresRaw = self.rp.testControlCombos(savePredictions=True, numOfFactors = None, nFolds = 10, residualizedControls=True, adaptationFactorsName = adaptationFactors, integrationMethod="rfa", allControlsOnly=True, report = False)
         self._saveResults(scoresRaw)
 
-        
