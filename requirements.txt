@@ -1,11 +1,9 @@
-streamlit
-pandas
-numpy==1.26.4
-scipy
-matplotlib
-seaborn
-scikit-learn
-pillow
-requests
-statsmodels
-patsy
+# Web app and analysis (tested with Python 3.11-3.12)
+streamlit==1.67.0
+pandas==3.0.6
+numpy==2.5.4
+scipy==1.17.1
+matplotlib==3.11.2
+seaborn==0.13.2
+statsmodels==0.15.0  # LOESS curve in the error scatterplot
+pyarrow==26.0.1  # used by Streamlit for tables; must match the NumPy major version
